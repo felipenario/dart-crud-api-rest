@@ -3,7 +3,7 @@
 This example handles HTTP requests.
 
 
-## Editing the function and testing locally
+## Testing locally
 
 Run the `build_runner` to regenerate `bin/server.dart` from `lib/functions.dart` and to build `homework_controller.g.dart`
 
