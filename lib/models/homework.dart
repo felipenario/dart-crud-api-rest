@@ -16,7 +16,7 @@ class Homework {
 
   factory Homework.fromJson(Map<String, dynamic> json){
     return Homework(
-      id: json['id'],
+      id: json['_id'],
       title: json['title'],
       discipline: json['discipline'],
       description: json['description']
@@ -26,6 +26,15 @@ class Homework {
   Map<String, dynamic> toJson() {
     return {
       '_id': id,
+      'title': title,
+      'discipline': discipline,
+      'description': description,
+      //'deliveryDate': deliveryDate
+    };
+  }
+
+  Map<String, dynamic> toJsonWithoutId() {
+    return {
       'title': title,
       'discipline': discipline,
       'description': description,
