@@ -1,58 +1,11 @@
-# Hello world example
+# RESTful Crud Dart Api
 
-This example handles HTTP GET requests by responding with 'Hello, World!'.
+This example handles HTTP requests.
 
-```dart
-// lib/functions.dart
-import 'package:functions_framework/functions_framework.dart';
-import 'package:shelf/shelf.dart';
-
-@CloudFunction()
-Response function(Request request) => Response.ok('Hello, World!');
-```
-
-## Simulate a hosted environment on your own machine
-
-You can run this function example on your own machine using Docker to simulate
-running in a hosted environment.
-
-```shell
-$ docker build -t hello .
-...
-
-$ docker run -it -p 8080:8080 --name app hello
-Listening on :8080
-```
-
-From another terminal:
-
-```shell
-curl http://localhost:8080
-Hello, World!
-```
-
-If you're curious about the size of the image you created, enter:
-
-```shell
-$ docker image ls hello
-REPOSITORY   TAG       IMAGE ID       CREATED          SIZE
-hello        latest    3f23c737877b   1 minute ago     11.6MB
-```
 
 ## Editing the function and testing locally
 
-If you would like to rename the handler function (`function`) to something else
-(ex: `handleGet`), you need to ensure that the `FUNCTION_TARGET` environment
-variable is set to the new function name.
-
-For example:
-
-```dart
-@CloudFunction()
-Response handleGet(Request request) => Response.ok('Hello, World!');
-```
-
-Run the `build_runner` to regenerate `bin/server.dart` from `lib/functions.dart`
+Run the `build_runner` to regenerate `bin/server.dart` from `lib/functions.dart` and to build `homework_controller.g.dart`
 
 ```shell
 $ dart run build_runner build
@@ -74,38 +27,11 @@ $ FUNCTION_TARGET=handleGet dart test
 
 Run it on your system:
 
+OBS: To run on Windows make the changes pointed on: https://github.com/GoogleCloudPlatform/functions-framework-dart/pull/153/commits/b3236807d8ec592e4534d0cfdde68aea22ce9b0d
+
 ```shell
-$ FUNCTION_TARGET=handleGet dart run bin/server.dart
+$ dart run bin/server.dart
 Listening on :8080
 ```
 
-If you want to test this hosted on your machine, rebuild the image
 
-```shell
-$ docker build -t hello .
-...
-```
-
-If you had a previous container running, make sure to remove it now. Assuming
-you named the container `app` (as demonstrated earlier):
-
-```shell
-docker rm -f app
-```
-
-Now launch another container, this time ensuring the environment variable is
-passed to Docker so that it will be set for the containerized function:
-
-```shell
-$ docker run -it -p 8080:8080 --name app -e 'FUNCTION_TARGET=handleGet' hello
-App listening on :8080
-```
-
-## Clean up
-
-When finished, clean up by entering:
-
-```shell
-docker rm -f app        # remove the container
-docker image rm hello   # remove the image
-```
