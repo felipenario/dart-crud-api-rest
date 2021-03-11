@@ -18,13 +18,6 @@ $ dart run build_runner build
 
 ```
 
-Run tests (note that `FUNCTION_TARGET` must now be set for the test process):
-
-```shell
-$ FUNCTION_TARGET=handleGet dart test
-00:02 +1: All tests passed!
-```
-
 Run it on your system:
 
 OBS: To run on Windows make the changes pointed on: https://github.com/GoogleCloudPlatform/functions-framework-dart/pull/153/commits/b3236807d8ec592e4534d0cfdde68aea22ce9b0d
